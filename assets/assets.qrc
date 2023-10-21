@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/boards/brown.svg</file>
+        <file>images/boards/pink-pyramid.png</file>
+        <file>images/pieces/bB.svg</file>
+        <file>images/pieces/bK.svg</file>
+        <file>images/pieces/bN.svg</file>
+        <file>images/pieces/bP.svg</file>
+        <file>images/pieces/bQ.svg</file>
+        <file>images/pieces/bR.svg</file>
+        <file>images/pieces/wB.svg</file>
+        <file>images/pieces/wK.svg</file>
+        <file>images/pieces/wN.svg</file>
+        <file>images/pieces/wP.svg</file>
+        <file>images/pieces/wQ.svg</file>
+        <file>images/pieces/wR.svg</file>
+        <file>fonts/NotoChess.ttf</file>
+    </qresource>
+</RCC>
