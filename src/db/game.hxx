@@ -1,6 +1,5 @@
 #pragma once
 #include <cstddef>
-#include <unordered_map>
 #include <vector>
 
 #include "bitboard.hxx"
@@ -19,6 +18,7 @@ public:
     [[nodiscard]] MoveId current_move() const { return m_current_move_id; }
     [[nodiscard]] std::vector<MoveNode> get_moves() const { return m_moves; }
     [[nodiscard]] std::string text() const;
+    void dump_debug() const;
 
 private:
     size_t m_current_move_index;

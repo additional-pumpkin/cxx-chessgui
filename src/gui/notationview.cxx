@@ -65,13 +65,13 @@ void NotationView::recalculate_moveboxes()
     const int move_box_width = 100;
     const int move_box_height = m_move_height;
     const int move_number_width = 40;
-    for (auto it = move_nodes.begin(); it != move_nodes.end(); ++it) {
-        if (it->variation_level > 0)
+    for (auto &move_node : move_nodes) {
+        if (move_node.variation_level > 0)
             continue;
         MoveBox move_box;
-        QPointF pos(it->move.color == db::BLACK ? move_box_width + move_number_width : move_number_width,
-                    (it->move.full_move - 1) * move_box_height);
-        move_box.node = *it;
+        QPointF pos(move_node.move.color == db::BLACK ? move_box_width + move_number_width : move_number_width,
+                    (move_node.move.full_move - 1) * move_box_height);
+        move_box.node = move_node;
         move_box.hitbox = QRectF(pos, QSizeF(move_box_width, m_move_height));
         m_move_boxes.push_back(move_box);
     }

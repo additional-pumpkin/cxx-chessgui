@@ -52,7 +52,7 @@ enum Square: int
     A8, B8, C8, D8, E8, F8, G8, H8,
     SQUARE_NONE
 };
-
+const int RANK_WIDTH = 8;
 const std::string fen_char_pieces = "PNBRQKpnbrqkx";
 enum Rank: int
 {
@@ -73,13 +73,23 @@ enum PieceType
 {
     PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING, PIECE_TYPE_NONE,
 };
-
+const int PIECE_TYPES = 6;
 enum Color
 {
     WHITE, BLACK, COLOR_NONE
 };
 
-
+enum class Direction
+{
+    RIGHT = 1,
+    LEFT = -RIGHT,
+    UP = 8,
+    DOWN = -UP,
+    DOWN_LEFT = DOWN + LEFT,
+    DOWN_RIGHT = DOWN + RIGHT,
+    UP_LEFT = UP + LEFT,
+    UP_RIGHT = UP + RIGHT
+};
 enum CastlingRights : int
 {
     CASTLING_NONE = 0,
@@ -144,28 +154,28 @@ inline PieceType &operator--(PieceType &d)
 
 inline Square make_square(File f, Rank r)
 {
-    return Square(r * 8 + f);
+    return Square(r * RANK_WIDTH + f);
 }
 // TODO: replace doing it manually with this function
 inline Piece make_piece(PieceType p, Color c)
 {
     if (p == PIECE_TYPE_NONE)
         return PIECE_NONE;
-    return Piece(c == BLACK ? p + 6 : p);
+    return Piece(c == BLACK ? p + PIECE_TYPES : p);
 }
 
 inline PieceType type_of(Piece p)
 {
-    return PieceType(p >= 6 ? p - 6 : p);
+    return PieceType(p >= PIECE_TYPES ? p - PIECE_TYPES : p);
 }
 
 inline Rank rank_of(Square s)
 {
-    return Rank(s / 8);
+    return Rank(s / RANK_WIDTH);
 }
 inline File file_of(Square s)
 {
-    return File(s % 8);
+    return File(s % RANK_WIDTH);
 }
 inline Color opposite(Color color)
 {
@@ -173,7 +183,7 @@ inline Color opposite(Color color)
 }
 inline Color color_of(Piece p)
 {
-    return Color(p == PIECE_NONE ? COLOR_NONE : p >= 6 ? BLACK : WHITE);
+    return Color(p == PIECE_NONE ? COLOR_NONE : p >= PIECE_TYPES ? BLACK : WHITE);
 }
 
 inline std::string get_piece_symbol(Piece p)

@@ -26,6 +26,12 @@ struct MoveNode
         , variation_id(variation_id)
         , variation_level(0)
     {}
+    MoveNode(const Move &move, VariationId variation_id, size_t variation_level)
+        : move(move)
+        , move_id(s_uniform_distribution(s_engine))
+        , variation_id(variation_id)
+        , variation_level(variation_level)
+    {}
     MoveNode(const Move &move, MoveId move_id, VariationId variation_id, size_t variation_level)
         : move(move)
         , move_id(move_id)

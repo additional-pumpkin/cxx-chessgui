@@ -4,46 +4,26 @@
 namespace db {
 struct Move
 {
-    Move()
-        : from(SQUARE_NONE)
-        , to(SQUARE_NONE)
-        , piece_moved(PIECE_NONE)
-        , captured(PIECE_NONE)
-        , color(COLOR_NONE)
-        , promoted(PIECE_NONE)
-        , is_enpassant(false)
-        , is_castling(false)
-        , is_legal(false)
-        , half_move_clock(0)
-        , full_move(0)
-        , prev_ep(SQUARE_NONE)
-        , castling_rights(CASTLING_NONE)
-        , needs_file(false)
-        , needs_rank(false)
-        , gives_check(false)
-        , gives_mate(false)
-    {}
+    Square from{SQUARE_NONE};
+    Square to{SQUARE_NONE};
+    Piece piece_moved{PIECE_NONE};
+    Piece captured{PIECE_NONE};
+    Color color{COLOR_NONE};
+    Piece promoted{PIECE_NONE};
+    bool is_enpassant{false};
+    bool is_castling{false};
+    bool is_legal{false};
 
-    Square from;
-    Square to;
-    Piece piece_moved;
-    Piece captured;
-    Color color;
-    Piece promoted; // PIECE_NONE if no promotion occured
-    bool is_enpassant;
-    bool is_castling;
-    bool is_legal;
-
-    uint32_t half_move_clock; // number of moves since last pawn move or capture
-    uint32_t full_move;       // ply number in game (incremented after each half move)
-    Square prev_ep;           // previous en-passant square
-    uint8_t castling_rights;
+    uint32_t half_move_clock{0}; // number of moves since last pawn move or capture
+    uint32_t full_move{0};       // ply number in game (incremented after each half move)
+    Square prev_ep{SQUARE_NONE}; // previous en-passant square
+    uint8_t castling_rights{CASTLING_NONE};
 
     // SAN information
-    bool needs_file;
-    bool needs_rank;
-    bool gives_check;
-    bool gives_mate;
+    bool needs_file{false};
+    bool needs_rank{false};
+    bool gives_check{false};
+    bool gives_mate{false};
 
     bool operator==(const Move &rhs)
     {
@@ -81,7 +61,6 @@ struct Move
         } else if (this->gives_mate) {
             san.push_back('#');
         }
-
         return san;
     }
 
